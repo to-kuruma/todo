@@ -1,0 +1,9 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simple TODO app served locally",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}

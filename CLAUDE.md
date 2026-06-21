@@ -5,29 +5,39 @@
 ## アプリの起動方法
 
 ```bash
-npm start   # npx serve でアプリを起動し、http://localhost:3000 を開く
+npm run dev     # 開発サーバー起動 → http://localhost:3000
+npm run build   # 本番ビルド
+npm start       # 本番サーバー起動
 ```
-
-ビルド手順は不要 — 静的ファイルからそのまま動作します。
 
 ## アーキテクチャ
 
-Vanilla JSによるシングルページTODOアプリ（日本語UI）。フレームワーク・バンドラーなし。
+Next.js (App Router) + TypeScript + CSS Modules による日本語UIのTODOアプリ。
+データはブラウザの`localStorage`のみに保存され、サーバーへの送信はない。
 
-- `index.html` — フォーム、フィルターボタン、`<ul id="todo-list">` を含む静的なページ構造
-- `script.js` — アプリのロジック全体: 状態管理（`todos[]`, `currentFilter`）、CRUD関数、イベントリスナー
-- `style.css` — スタイル全体。アクセントカラーは `#6e8efb`
+```
+app/
+  layout.tsx        — HTMLレイアウト、メタ情報
+  page.tsx          — メインページ（"use client"、UIコンポーネント）
+  page.module.css   — TODOアプリのスタイル（CSS Modules）
+  globals.css       — グローバルスタイル（背景グラデーションなど）
+hooks/
+  useTodo.ts        — 状態管理・localStorage永続化のカスタムフック
+```
 
-### 状態モデル
+## 状態モデル
 
-`todos` は `{ id: number, text: string, completed: boolean }` のオブジェクトを持つ配列で、メモリ上に保持されつつ `localStorage` のキー `"todos"` に永続化される。すべての変更操作は「状態を変更 → `saveTodos()` → `render()`」のパターンに従う。`render()` は呼び出されるたびにリストのDOMを全て再構築する。
+`useTodo` フック内で `todos: Todo[]` と `filter: Filter` を `useState` で管理。
+`Todo` の型は `{ id: number, text: string, completed: boolean }`。
+すべての変更操作は `save()` 関数を通じてstateとlocalStorageを同期する。
 
-### script.js内の主要な関数
+### useTodo の主なAPI
 
-| 関数 | 役割 |
+| 関数・値 | 役割 |
 |---|---|
-| `loadTodos()` | 起動時に`localStorage`から読み込む |
-| `render()` | `currentFilter`に基づいて`<ul>`を再構築する |
+| `filtered` | 現在のフィルターを適用したTODO一覧 |
+| `activeCount` | 未完了タスク数 |
+| `filter` / `setFilter` | フィルター状態（`all` / `active` / `completed`） |
 | `addTodo(text)` | `id: Date.now()`で新しいTODOを追加する |
 | `toggleTodo(id)` | `completed`フラグを反転させる |
 | `deleteTodo(id)` | idで指定したTODOを削除する |

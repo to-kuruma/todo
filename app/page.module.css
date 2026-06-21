@@ -1,18 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  background: linear-gradient(135deg, #6e8efb, #a777e3);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
 .app {
   background: #fff;
   width: 100%;
@@ -22,19 +7,19 @@ body {
   padding: 24px;
 }
 
-h1 {
+.app h1 {
   text-align: center;
   margin: 0 0 20px;
   color: #333;
 }
 
-.todo-form {
+.todoForm {
   display: flex;
   gap: 8px;
   margin-bottom: 16px;
 }
 
-.todo-form input {
+.todoForm input {
   flex: 1;
   padding: 10px 12px;
   border: 1px solid #ddd;
@@ -42,12 +27,12 @@ h1 {
   font-size: 16px;
 }
 
-.todo-form input:focus {
+.todoForm input:focus {
   outline: none;
   border-color: #6e8efb;
 }
 
-.todo-form button {
+.todoForm button {
   padding: 10px 16px;
   border: none;
   border-radius: 6px;
@@ -58,7 +43,7 @@ h1 {
   transition: background 0.2s;
 }
 
-.todo-form button:hover {
+.todoForm button:hover {
   background: #5a7af0;
 }
 
@@ -68,7 +53,7 @@ h1 {
   margin-bottom: 16px;
 }
 
-.filter-btn {
+.filterBtn {
   flex: 1;
   padding: 8px;
   border: 1px solid #ddd;
@@ -80,17 +65,17 @@ h1 {
   transition: all 0.2s;
 }
 
-.filter-btn:hover {
+.filterBtn:hover {
   background: #f5f5f5;
 }
 
-.filter-btn.active {
+.filterBtn.active {
   background: #6e8efb;
   color: #fff;
   border-color: #6e8efb;
 }
 
-.todo-list {
+.todoList {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -99,7 +84,7 @@ h1 {
   overflow-y: auto;
 }
 
-.todo-item {
+.todoItem {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -107,28 +92,28 @@ h1 {
   border-bottom: 1px solid #eee;
 }
 
-.todo-item:last-child {
+.todoItem:last-child {
   border-bottom: none;
 }
 
-.todo-item input[type="checkbox"] {
+.todoItem input[type="checkbox"] {
   width: 18px;
   height: 18px;
   cursor: pointer;
   flex-shrink: 0;
 }
 
-.todo-item .todo-text {
+.todoText {
   flex: 1;
   word-break: break-all;
 }
 
-.todo-item.completed .todo-text {
+.todoItem.completed .todoText {
   text-decoration: line-through;
   color: #aaa;
 }
 
-.todo-item .delete-btn {
+.deleteBtn {
   border: none;
   background: none;
   color: #ff6b6b;
@@ -139,11 +124,11 @@ h1 {
   transition: background 0.2s;
 }
 
-.todo-item .delete-btn:hover {
+.deleteBtn:hover {
   background: #ffe8e8;
 }
 
-.empty-message {
+.emptyMessage {
   text-align: center;
   color: #aaa;
   padding: 20px 0;

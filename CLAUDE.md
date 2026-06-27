@@ -8,6 +8,8 @@
 npm run dev     # 開発サーバー起動 → http://localhost:3000
 npm run build   # 本番ビルド
 npm start       # 本番サーバー起動
+npm test        # Vitestでテストを実行
+npm run test:watch  # ウォッチモードでテスト実行
 ```
 
 ## アーキテクチャ
@@ -23,6 +25,8 @@ app/
   globals.css       — グローバルスタイル（背景グラデーションなど）
 hooks/
   useTodo.ts        — 状態管理・localStorage永続化のカスタムフック
+app/__tests__/
+  page.test.tsx     — Vitest + React Testing Libraryによるpage.tsxの結合テスト
 ```
 
 ## 状態モデル
